@@ -57,7 +57,7 @@ double diameter(vector<pll> points, float gridSize, int number){
 int main() {
 	vector<pll> points = {pll(0, 2), pll(3, 1), pll(3, 5), pll(5, 5)};
 	float gridSize = 10;
-	int number = 5 + 1; // number of rows in grid
+	int number = 6; // number of rows in grid
 	double diam = diameter(points, gridSize, number);
 	cout << "Diameter: " << diam << endl;
   	return 0;
