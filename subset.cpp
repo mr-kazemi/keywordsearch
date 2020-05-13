@@ -1,6 +1,7 @@
 #include<iostream>
 #include <vector>
 #include "point.h"
+using namespace std;
 vector<vector<int>> listforsaving;
 
 //This is not a recursive method
