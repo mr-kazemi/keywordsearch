@@ -1,16 +1,15 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#include <cmath> 
 using namespace std;
 
 #define pll pair<long long,long long>
 
-double diameter(vector<pll> points, float gridSize, int number){
+double diameter_square(vector<pll> points, float gridSize, int num_rows){
 
-	//find left most and right most in each row
+	// find left most and right most in each row
 	vector<long long> left;
 	vector<long long> right;
-	for(int i=0; i<number; i++){
+	for(int i=0; i<num_rows; i++){
 		left.push_back(-1);
 		right.push_back(-1);
 	}
@@ -35,6 +34,7 @@ double diameter(vector<pll> points, float gridSize, int number){
 
 	// find diameter
 	double diam = 0;
+	double d = 0;
 	for(int i=0; i<left.size(); i++) {
 		if(left[i] == -1) {
 			continue;
@@ -43,13 +43,23 @@ double diameter(vector<pll> points, float gridSize, int number){
 			if(right[j] == -1) {
 				continue;
 			}
-			double d = pow(i - j, 2) + pow(left[i] - right[j], 2);
+			d = (i - j) * (i - j) + (left[i] - right[j]) * (left[i] - right[j]);
+			if(diam < d) {
+				diam = d;
+			}
+		}
+		for(int j=i; j<left.size(); j++) {
+			if(right[j] == -1) {
+				continue;
+			}
+			d = (i - j) * (i - j) + (left[i] - left[j]) * (left[i] - left[j]);
 			if(diam < d) {
 				diam = d;
 			}
 		}
 	}
-	diam = sqrt(diam) * gridSize;
+
+	diam = diam * gridSize * gridSize;
 
 	return diam;
 }
@@ -57,8 +67,8 @@ double diameter(vector<pll> points, float gridSize, int number){
 int main() {
 	vector<pll> points = {pll(0, 2), pll(3, 1), pll(3, 5), pll(5, 5)};
 	float gridSize = 10;
-	int number = 6; // number of rows in grid
-	double diam = diameter(points, gridSize, number);
+	int num_rows = 6; // number of rows in grid
+	double diam = diameter_square(points, gridSize, num_rows);
 	cout << "Diameter: " << diam << endl;
   	return 0;
 }
