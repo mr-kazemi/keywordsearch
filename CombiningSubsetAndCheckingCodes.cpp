@@ -4,15 +4,15 @@
 using namespace std;
 
 
-//I can say, n is a length of points and m is the number of the colors.
+//I can say, n is a length of the points and m is the number of the colors.
 vector<vector<int>> subsetWithOutDividing(vector<Point> points, int n, int m, int k, vector<int> theSetOfTheColors){
     int a[n];
     int i, j, checkPoint = 0;
-    int b[m] = {0};//Saving the frequent of each colors in the specific set
+    int b[m] = {0};//Saving the frequent of each color which are in the specific set
     bool color[m] = {false};//For saving the colors which user gives us
     for(int l = 0; l < theSetOfTheColors.size(); l++)
         color[theSetOfTheColors[l]] = true;
-    int counter = 0;//Counter consists of the data or not
+    int counter = 0;//Counter consists of datas that exist in it
     vector<vector<int>> listForSaving;//Just a list for saving all the sets
     vector<int> data;//Just a list for saving a specific set
     for(i = 0; i < n; i++)//This array Addresses the points
@@ -65,7 +65,7 @@ vector<vector<int>> subsetWithOutDividing(vector<Point> points, int n, int m, in
 
 }
 
-//This method for inserting subsets which are less or equal than k
+//This is a method that inserts the subsets which are less or equal than k
 vector<vector<int>> show(vector<Point> points, int m, int k, vector<int> theSetOfTheColors){
     int n = points.size();
     vector<vector<int>> listForSaving, swaping;
