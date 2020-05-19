@@ -7,18 +7,18 @@ double squdist(Point a,Point b){
     dist+=((a.y-b.y)*(a.y-b.y));
     return dist;
 }
-double makedelta(vector<Point> point,int k){
+double makedelta(vector<Point> points,int k){
     double dist[k];
     Point P_1;
     Point P_2;
     double delta=MAX;
     double max_dist_point;
-    for(int i=0;i<(int)point.size();i++){
+    for(int i=0;i<(int)points.size();i++){
         fill(dist,dist+k,MAX);
         max_dist_point=-1;
-        P_1=point[i];
-        for(int j=0;j<(int)point.size();j++){
-            P_2=point[j];
+        P_1=points[i];
+        for(int j=0;j<(int)points.size();j++){
+            P_2=points[j];
             if(P_2.color!=P_1.color){
                 /*cout<<"pos "<<i<<' '<<j<<endl;
                 cout<<"collllllllor==>"<<P_2.color<<' '<<P_1.color<<endl;
@@ -52,16 +52,16 @@ int main()
     double x,y;
     int color;
     Point p;
-    vector<Point> point;
+    vector<Point> points;
     while(true){
         cin>>x>>y>>color;
         if(x==0 && y==0&&color==0)
             break;
         p=Point(x,y,color);
-        point.push_back(p);
+        points.push_back(p);
 
     }
-    cout<<makedelta(point,3)<<endl;
+    cout<<makedelta(points,3)<<endl;
     return 0;
 }
 /*

@@ -3,7 +3,7 @@
 using namespace std;
 vector<Point> rand_num_generation(double x,double y,int k,int n){
     srand(time(0));
-    vector<Point> point;
+    vector<Point> points;
     double ax,ay;
     int color;
     for(int i=0;i<n;i++){
@@ -13,9 +13,9 @@ vector<Point> rand_num_generation(double x,double y,int k,int n){
         ay=ay*(y);
         color=(rand()%k)+1;
         //cout<<ax<<" , "<<ay<<" , "<<color<<endl;
-        point.push_back(Point(ax,ay,color));
+        points.push_back(Point(ax,ay,color));
     }
-    return point;
+    return points;
 }
 int main()
 {
