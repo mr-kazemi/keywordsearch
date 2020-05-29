@@ -85,7 +85,7 @@ int main(){
     Point k = Point(2, -5, 2);
     Point l = Point(2, -5, 3);
     Point f = Point(2, -5, 4);
-    Point n = Point(2, -5, 5);
+    Point n = Point(2, -5, 4);
     c.push_back(d);
     c.push_back(k);
     c.push_back(l);
