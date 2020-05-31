@@ -19,7 +19,7 @@ void combine(int a[], int i, int j, int k, int n, set<int> AbsColors, map<int,in
 
     //for (itrset = AbsColors.begin(); itrset != AbsColors.end(); ++itrset)
                 //cout<<"  abs_curr = " << *itrset;
-    if(j == k){
+    if(j == k){/*
         for(int i = 0; i < k; i++){
             cout<<"("<<pcoords[a[i]-1].first<<","<<pcoords[a[i]-1].second<<")"<<" , ";
             //cout<<  a[i] << "," ;
@@ -28,7 +28,7 @@ void combine(int a[], int i, int j, int k, int n, set<int> AbsColors, map<int,in
             cout<< " color-spanning" <<"\n" ;
         else
             cout<< " not color-spanning" <<"\n";
-
+*/
     }
     else{
         if(i <= n){
@@ -116,18 +116,44 @@ void ColorSpanningSets( int k, map<pll,set<int> > points, vector<int> colors){
 int main(){
 
 
-    map<pll,set<int> > c;// just as an example for checking
-    c[pll(1,2)] = {1,4,6};
-    c[pll(3,5)] = {3,7,2};
-    c[pll(1,4)] = {1,5};
-    c[pll(3,6)] = {3,2};
-    c[pll(7,1)] = {5,6};
-    c[pll(3,4)] = {5,1,2};
-    c[pll(5,1)] = {4,8};
+    map<pll,set<int> > grid;// just as an example for checking
+    grid[pll(1,2)] = {1,4,6};
+    grid[pll(3,5)] = {3,7,2};
+    grid[pll(1,4)] = {1,5};
+    grid[pll(3,6)] = {3,2};
+    grid[pll(7,1)] = {5,6};
+    grid[pll(3,4)] = {5,1,2};
+    grid[pll(5,1)] = {4,8};
+    grid[pll(11,2)] = {4,9,3};
+    grid[pll(12,5)] = {11,4,8};
+    grid[pll(10,3)] = {2,7,6};
+    grid[pll(1,2)].insert(1);
+    grid[pll(1,2)].insert(4);
+    grid[pll(1,2)].insert(6);
+    grid[pll(3,5)].insert(3);
+    grid[pll(3,5)].insert(7);
+    grid[pll(3,5)].insert(2);
+    grid[pll(1,4)].insert(1);
+    grid[pll(1,4)].insert(5);
+    grid[pll(3,6)].insert(3);
+    grid[pll(3,6)].insert(2);
+    grid[pll(7,1)].insert(5);
+    grid[pll(7,1)].insert(8);
+    grid[pll(7,1)].insert(6);
+    grid[pll(2,8)].insert(5);
+    grid[pll(2,8)].insert(12);
+    grid[pll(3,8)].insert(2);
+    grid[pll(5,10)].insert(4);
+    grid[pll(5,10)].insert(10);
+    grid[pll(7,8)].insert(11);
+    grid[pll(7,8)].insert(6);
+    grid[pll(1,6)].insert(10);
+    grid[pll(1,6)].insert(1);
+    grid[pll(1,6)].insert(2);
+    grid[pll(5,9)].insert(4);
+    grid[pll(5,9)].insert(9);
 
-    int col[7] = {10};
-    vector<int> ColorsTest( col, col);
-    ColorSpanningSets( 4, c, {8,6});
+    ColorSpanningSets( 8, grid, {1,5,7,6,11,12});
 
 
 return 0;
