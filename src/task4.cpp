@@ -18,12 +18,12 @@ void f(int pos,vector<pll> a,int k,int cont,int collpos[],int contcol[]){
         /*for(int i=0;i<sz;i++){
             cout<<"("<<a[i].first<<","<<a[i].second<<")"<<" , ";
         }*/
-        /*cout<<endl;
+        //cout<<endl;
         if(cont==0){
             number++;
-            cout<<"color spanning"<<endl;
+            //cout<<"color spanning"<<endl;
         }
-        else{
+        /*else{
             cout<<"not color spanning"<<endl;
         }*/
         return;
@@ -60,8 +60,8 @@ void f(int pos,vector<pll> a,int k,int cont,int collpos[],int contcol[]){
 }
 void ColorSpanningSets(int m,int k,vector<int> Mycolor){
     number=0;
-    int all_color[m];///position of color in Mycolor set in  all_color and -1 for other color
-    fill(all_color,all_color+m,-1);
+    int all_color[m+1];///position of color in Mycolor set in  all_color and -1 for other color
+    fill(all_color,all_color+(m+1),-1);
     int sp_col_size=(int)Mycolor.size();
     ///set up position of my color to all_color
     for(int i=0;i<sp_col_size;i++){

@@ -58,8 +58,8 @@ void f(int pos,pll a[],int posa,int k,int cont,int collpos[],int contcol[]){
 }
 void ColorSpanningSets(int m,int k,vector<int> Mycolor){
     number=0;
-    int all_color[m];///position of color in Mycolor set in  all_color and -1 for other color
-    fill(all_color,all_color+m,-1);
+    int all_color[m+1];///position of color in Mycolor set in  all_color and -1 for other color
+    fill(all_color,all_color+(m+1),-1);
     int sp_col_size=(int)Mycolor.size();
     ///set up position of my color to all_color
     for(int i=0;i<sp_col_size;i++){
@@ -76,8 +76,33 @@ void ColorSpanningSets(int m,int k,vector<int> Mycolor){
 }
 int main(){
 
-    int m = 10;//the number of all colors
+    int m = 12;//the number of all colors
     // just as an example for checking
+    grid[pll(1,2)].insert(1);
+    grid[pll(1,2)].insert(4);
+    grid[pll(1,2)].insert(6);
+    grid[pll(3,5)].insert(3);
+    grid[pll(3,5)].insert(7);
+    grid[pll(3,5)].insert(2);
+    grid[pll(1,4)].insert(1);
+    grid[pll(1,4)].insert(5);
+    grid[pll(3,6)].insert(3);
+    grid[pll(3,6)].insert(2);
+    grid[pll(7,1)].insert(5);
+    //grid[pll(7,1)].insert(8);
+    grid[pll(7,1)].insert(6);
+    grid[pll(3,4)].insert(5);
+    grid[pll(3,4)].insert(1);
+    grid[pll(3,4)].insert(2);
+    grid[pll(5,1)].insert(4);
+    grid[pll(5,1)].insert(8);
+    /*grid[pll(1,2)] = {1,4,6};
+    grid[pll(3,5)] = {3,7,2};
+    grid[pll(1,4)] = {1,5};
+    grid[pll(3,6)] = {3,2};
+    grid[pll(7,1)] = {5,6};
+    grid[pll(3,4)] = {5,1,2};
+    grid[pll(5,1)] = {4,8};*/
     grid[pll(1,2)].insert(1);
     grid[pll(1,2)].insert(4);
     grid[pll(1,2)].insert(6);
@@ -91,20 +116,28 @@ int main(){
     grid[pll(7,1)].insert(5);
     grid[pll(7,1)].insert(8);
     grid[pll(7,1)].insert(6);
-    grid[pll(3,4)].insert(5);
-    grid[pll(3,4)].insert(1);
-    grid[pll(3,4)].insert(2);
-    grid[pll(5,1)].insert(4);
-    grid[pll(5,1)].insert(8);
+    grid[pll(2,8)].insert(5);
+    grid[pll(2,8)].insert(12);
+    grid[pll(3,8)].insert(2);
+    grid[pll(5,10)].insert(4);
+    grid[pll(5,10)].insert(10);
+    grid[pll(7,8)].insert(11);
+    grid[pll(7,8)].insert(6);
+    grid[pll(3,6)].insert(10);
+    grid[pll(3,6)].insert(1);
+    grid[pll(3,6)].insert(2);
+    grid[pll(5,9)].insert(4);
+    grid[pll(5,9)].insert(9);
+
     for (std::map<pll,set<int> >::iterator it=grid.begin(); it!=grid.end(); ++it)
         key.push_back(it->first);
     //key.pop_back();
     for(int i=0;i<key.size();i++){
         cout<<key[i].first<<"  "<<key[i].second<<endl;
     }
-    int dd[4]={1,5,7,8};
-    vector<int> d(dd,dd+4);
-    ColorSpanningSets( m,4,d);
+    int dd[6]={1,5,7,6,11,12};
+    vector<int> d(dd,dd+6);
+    ColorSpanningSets( m,6,d);
     cout<<"number of color spanning subset => "<<number<<endl;
 
 
