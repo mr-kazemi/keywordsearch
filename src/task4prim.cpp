@@ -14,17 +14,17 @@ void f(int pos,pll a[],int posa,int k,int cont,int collpos[],int contcol[]){
     if(k==0){
 
         //cout<<number<<endl;
-        for(int i=0;i<posa;i++){
+        /*for(int i=0;i<posa;i++){
             cout<<"("<<a[i].first<<","<<a[i].second<<")"<<" , ";
-        }
-        cout<<endl;
+        }*/
+        //cout<<endl;
         if(cont==0){
             number++;
-            cout<<"color spanning"<<endl;
+            //cout<<"color spanning"<<endl;
         }
-        else{
+        /*else{
             cout<<"not color spanning"<<endl;
-        }
+        }*/
         return;
     }
     if(pos>=((int)key.size())){
@@ -78,7 +78,7 @@ int main(){
 
     int m = 12;//the number of all colors
     // just as an example for checking
-    grid[pll(1,2)].insert(1);
+    /*grid[pll(1,2)].insert(1);
     grid[pll(1,2)].insert(4);
     grid[pll(1,2)].insert(6);
     grid[pll(3,5)].insert(3);
@@ -96,13 +96,13 @@ int main(){
     grid[pll(3,4)].insert(2);
     grid[pll(5,1)].insert(4);
     grid[pll(5,1)].insert(8);
-    /*grid[pll(1,2)] = {1,4,6};
+    grid[pll(1,2)] = {1,4,6};
     grid[pll(3,5)] = {3,7,2};
     grid[pll(1,4)] = {1,5};
     grid[pll(3,6)] = {3,2};
     grid[pll(7,1)] = {5,6};
     grid[pll(3,4)] = {5,1,2};
-    grid[pll(5,1)] = {4,8};*/
+    grid[pll(5,1)] = {4,8};
     grid[pll(1,2)].insert(1);
     grid[pll(1,2)].insert(4);
     grid[pll(1,2)].insert(6);
@@ -127,17 +127,56 @@ int main(){
     grid[pll(3,6)].insert(1);
     grid[pll(3,6)].insert(2);
     grid[pll(5,9)].insert(4);
+    grid[pll(5,9)].insert(9);*/
+    grid[pll(3,4)].insert(5);
+    grid[pll(3,4)].insert(1);
+    grid[pll(3,4)].insert(2);
+    grid[pll(5,1)].insert(4);
+    grid[pll(5,1)].insert(8);
+    grid[pll(11,2)].insert(4);
+    grid[pll(11,2)].insert(9);
+    grid[pll(11,2)].insert(3);
+    grid[pll(12,5)].insert(11);
+    grid[pll(12,5)].insert(4);
+    grid[pll(12,5)].insert(8);
+    grid[pll(10,3)].insert(2);
+    grid[pll(10,3)].insert(7);
+    grid[pll(10,3)].insert(6);
+    grid[pll(1,2)].insert(1);
+    grid[pll(1,2)].insert(4);
+    grid[pll(1,2)].insert(6);
+    grid[pll(3,5)].insert(3);
+    grid[pll(3,5)].insert(7);
+    grid[pll(3,5)].insert(2);
+    grid[pll(1,4)].insert(1);
+    grid[pll(1,4)].insert(5);
+    grid[pll(3,6)].insert(3);
+    grid[pll(3,6)].insert(2);
+    grid[pll(7,1)].insert(5);
+    grid[pll(7,1)].insert(8);
+    grid[pll(7,1)].insert(6);
+    grid[pll(2,8)].insert(5);
+    grid[pll(2,8)].insert(12);
+    grid[pll(3,8)].insert(2);
+    grid[pll(5,10)].insert(4);
+    grid[pll(5,10)].insert(10);
+    grid[pll(7,8)].insert(11);
+    grid[pll(7,8)].insert(6);
+    grid[pll(1,6)].insert(10);
+    grid[pll(1,6)].insert(1);
+    grid[pll(1,6)].insert(2);
+    grid[pll(5,9)].insert(4);
     grid[pll(5,9)].insert(9);
 
     for (std::map<pll,set<int> >::iterator it=grid.begin(); it!=grid.end(); ++it)
         key.push_back(it->first);
     //key.pop_back();
-    for(int i=0;i<key.size();i++){
+    /*for(int i=0;i<key.size();i++){
         cout<<key[i].first<<"  "<<key[i].second<<endl;
-    }
+    }*/
     int dd[6]={1,5,7,6,11,12};
     vector<int> d(dd,dd+6);
-    ColorSpanningSets( m,6,d);
+    ColorSpanningSets( m,8,d);
     cout<<"number of color spanning subset => "<<number<<endl;
 
 
