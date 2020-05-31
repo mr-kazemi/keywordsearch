@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
-//#include<iostream>
-//#include <vector>
-//#include <set>
+#include<iostream>
+#include <vector>
+#include <set>
+#include <map>
 //#include "point.h"
 using namespace std;
 #define pll pair<int,int>
@@ -10,44 +11,62 @@ using namespace std;
 
 
 //A recursive method to generate subsets
-void combine(int a[],int i, int j, int k, int n, set<int> AbsColors, map<int,int> ColorFreq, map<pll,set<int> > points){
+void combine(int a[], int i, int j, int k, int n, set<int> AbsColors, map<int,int> &ColorFreq, vector<pll> pcoords, vector<set<int>> pcolors ){
     vector<int> data;
     set<int> SetOfColors;
     map<pll,set<int> >::iterator itr;
     set<int>::iterator itrset;
+
+    //for (itrset = AbsColors.begin(); itrset != AbsColors.end(); ++itrset)
+                //cout<<"  abs_curr = " << *itrset;
     if(j == k){
         for(int i = 0; i < k; i++){
-            cout<<  a[i] << "," ;
+            cout<<"("<<pcoords[a[i]-1].first<<","<<pcoords[a[i]-1].second<<")"<<" , ";
+            //cout<<  a[i] << "," ;
         }
         if(AbsColors.empty())
             cout<< " color-spanning" <<"\n" ;
         else
             cout<< " not color-spanning" <<"\n";
+
     }
     else{
         if(i <= n){
             if(n-i >= k-j)
-                combine(a, i+1, j, k, n, AbsColors, ColorFreq, points);
+                combine(a, i+1, j, k, n, AbsColors, ColorFreq, pcoords, pcolors);
             //Replace j-th element of currently selected set by i
-            itr = points.begin() + a[j]-1;
-            for (itrset = (itr->second).begin(); itrset != (itr->second).end(); ++itrset)
-                if ( ColorFreq.find(*itrset) != ColorFreq.end() ) {
-                    ColorFreq[*itrset]--;
-                    if ( ColorFreq[*itrset] == 0)
-                        AbsColors.insert( *itrset );
-                }
-            itr = points.begin() + i-1;
-            for (itrset = (itr->second).begin(); itrset != (itr->second).end(); ++itrset)
+            if (a[j]){
+                //itr = next(points.begin() , a[j]-1);
+               // cout<<"  aj = "<< a[j]  ;
+                //SetOfColors = itr->second;
+                for (itrset = pcolors[a[j]-1].begin(); itrset != pcolors[a[j]-1].end(); ++itrset)
+                    //cout<<"  color = "<< *itrset  ;
+                    if ( ColorFreq.find(*itrset) != ColorFreq.end() ) {
+                        //cout<< "bef_del: " << *itrset <<" freq: "<< ColorFreq[*itrset] <<" , ";
+                        ColorFreq[*itrset]--;
+                        //cout<< "aft_del: " << *itrset <<" freq: "<< ColorFreq[*itrset] <<" , ";
+                        if ( ColorFreq[*itrset] == 0)
+                            AbsColors.insert( *itrset );
+                    }
+            }
+            //itr = next(points.begin() , i-1);
+            //cout<<"("<<pcoords[i-1].first<<","<<pcoords[i-1].second<<")"<<" , ";
+            //SetOfColors = (itr->second);
+            for (itrset = pcolors[i-1].begin(); itrset != pcolors[i-1].end(); ++itrset)
+                //cout<<"  color = " << *itrset ;
                 if ( ColorFreq.find(*itrset) != ColorFreq.end() ) {
                     ColorFreq[*itrset]++;
+                    //cout<< "add: " << *itrset <<" freq: "<< ColorFreq[*itrset] <<" , ";
                     AbsColors.erase(*itrset);
                 }
-            
-            a[j] = i;  
+            //for (itrset = AbsColors.begin(); itrset != AbsColors.end(); ++itrset)
+                //cout<<"  abs_curr = " << *itrset;
+
+            a[j] = i;
             j++;
             //End of replacement
-            
-            combine(a, i+1, j, k, n, AbsColors, ColorFreq, points);
+
+            combine(a, i+1, j, k, n, AbsColors, ColorFreq, pcoords, pcolors);
         }
     }
 }
@@ -57,16 +76,37 @@ void combine(int a[],int i, int j, int k, int n, set<int> AbsColors, map<int,int
 void ColorSpanningSets( int k, map<pll,set<int> > points, vector<int> colors){
     int n = points.size();
     int m = colors.size();
-    int a[n];
-    for(int i = 0; i < n; i++)
-        a[i] = i+1;
-    map<int,int> ColorFreq;   //Maintain the frequency of each color in user specified set
-    int AbsentColorsNum = m;
-    for(int l = 0; l < m; l++) //Initiate ColorFreq
+    int a[n] = {0};     //Maintain subsets
+    vector<set<int>> PointsColors;
+    vector<pll> PonitsCoords;
+    set<int> AbsColors;
+    for (int x : colors)
+        AbsColors.insert(x);
+
+    //copy( AbsColors.begin(), AbsColors.end(),  back_inserter(colors));
+    //set<int>::iterator itrset;
+    //for (itrset = AbsColors.begin(); itrset != AbsColors.end(); ++itrset)
+                //cout<<"  abs_curr = " << *itrset;
+
+    map<int,int> ColorFreq;          //Maintain the frequency of each color in specified set
+    for(int l = 0; l < m; l++)       //Initialize ColorFreq
         ColorFreq[colors[l]] = 0;
-    for(int i = k; i > 0; i--)
-        combine(a, 1, 0, i, n, AbsColors, ColorFreq, points);   //Recursive set generator
-        
+    for (std::map<pll,set<int> >::iterator it=points.begin(); it!=points.end(); ++it){
+        PointsColors.push_back(it->second);
+        PonitsCoords.push_back(it->first);
+    }
+/*
+    for(int i = k; i > 0; i--){
+        for(int j = 0; j < n; j++)
+            a[j] = j+1;
+        for(int j = 0; j < i; j++)
+            b[k]=0;
+        map<int,int> ColorFreq;          //Maintain the frequency of each color in specified set
+        for(int l = 0; l < m; l++)       //Initialize ColorFreq
+            ColorFreq[colors[l]] = 0;
+*/int i = k;
+        combine(a, 1, 0, i, n, AbsColors, ColorFreq, PonitsCoords, PointsColors);   //Recursive set generator
+//    }
 }
 
 
@@ -75,18 +115,20 @@ void ColorSpanningSets( int k, map<pll,set<int> > points, vector<int> colors){
 
 int main(){
 
-    int m = 10;//the number of all colors
+
     map<pll,set<int> > c;// just as an example for checking
-    c[(1,2)] = {1,4,6};
-    c[(3,5)] = {3,7,2};
-    c[(1,4)] = {1,5};
-    c[(3,6)] = {3,2};
-    c[(7,1)] = {5,8,6};
-    c[(3,4)] = {5,1,2};
-    c[(5,1)] = {4,8};
-    
-    ColorSpanningSets( 4, c, {1,5,7,8});
-    
-    
+    c[pll(1,2)] = {1,4,6};
+    c[pll(3,5)] = {3,7,2};
+    c[pll(1,4)] = {1,5};
+    c[pll(3,6)] = {3,2};
+    c[pll(7,1)] = {5,6};
+    c[pll(3,4)] = {5,1,2};
+    c[pll(5,1)] = {4,8};
+
+    int col[7] = {10};
+    vector<int> ColorsTest( col, col);
+    ColorSpanningSets( 4, c, {8,6});
+
+
 return 0;
 }
