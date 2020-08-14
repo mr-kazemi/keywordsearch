@@ -3,16 +3,20 @@
 using namespace std;
 #define pll pair<long long,long long>
 
-map<pll,set<int> > task_2(vector<Point> point,double delta,double epsilon){
+map<pll,set<int> > task_2(vector<Point> points,double delta,double epsilon){
     map<pll,set<int> > table;
     double a=(epsilon)/3;
+    /// a==>the side of square in the grid
     a*=delta;
     long long help_x,help_y;
-    for(int i=0;i<(int)point.size();i++){
-        help_x=floor(point[i].x/a);
-        help_y=floor(point[i].y/a);
+    /// Changing every coordination of points which give to me in to the integers-
+    ///    that they show the number of squares on all sides of coordination
+    /// Every point can have different colors
+    for(int i=0;i<(int)points.size();i++){
+        help_x=floor(points[i].x/a);
+        help_y=floor(points[i].y/a);
         //cout<<help_x<<' '<<help_y<<endl;
-        table[pll(help_x,help_y)].insert(point[i].color);
+        table[pll(help_x,help_y)].insert(points[i].color);
     }
     return table;
 }
