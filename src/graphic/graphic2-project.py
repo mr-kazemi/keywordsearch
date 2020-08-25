@@ -67,7 +67,7 @@ for i in range(0,g):
     t.draw(win)   
     
 pt_diam=[c_a*int((diam_point1[0]+diam_point2[0])/a)/2, c_a*int((diam_point1[1]+diam_point2[1])/a)/2]#Calcuting the center of the diamater
-d= math.sqrt((diam_point1[0]-diam_point2[0])**2 + (diam_point1[0]-diam_point2[0])**2)#Calcuting the length of the diamater
+d= math.sqrt((diam_point1[0]-diam_point2[0])**2 + (diam_point1[1]-diam_point2[1])**2))#Calcuting the length of the diamater
 diam= change/2*(d)
 
 #Drawing the first point of the diamater
