@@ -97,7 +97,7 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     }
     /// graphic part
     ofstream file;
-    file.open("C:\\Users\\Acer\\Desktop\\Point_data.txt");
+    file.open("C:\\Users\\Acer\\Desktop\\Point_Data.txt");
     file<<n_color<<" ";
     file<<point_c1.x<<" "<<point_c1.y<<" "<<point_c1.color<<" ";
     file<<point_c2.x<<" "<<point_c2.y<<" "<<point_c2.color;
