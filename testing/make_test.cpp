@@ -1,15 +1,11 @@
 #include <bits/stdc++.h>
-#include "point.h"
 using namespace std;
 
-///square of distance between two points
-double squdist(Point a,Point b){
-    double dist=(a.x-b.x)*(a.x-b.x);
-    dist+=((a.y-b.y)*(a.y-b.y));
-    return dist;
-}
+/*include need before run:
+  "point.h"
+  "squared_distance.cpp"
 
-
+*/
 /// maketest ("max_x" max in x coordinates ,"max_y" max in y coordinates , "top_ncolor" max number of each color , "n_color" number of color)
 vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     srand(time(0));
@@ -69,7 +65,7 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     centerX/=2;
     double centerY=point_c1.y+point_c2.y;///find Y coordinate for center of circle
     centerY/=2;
-    cout<<"center of the circle"<<centerX<<" , "<<centerY<<endl;
+    cout<<"center of the circle==>"<<centerX<<" , "<<centerY<<endl;
     double side_of_squar_inside=R*sqrt(2);///? /// reduce Radius for sure points located in circle
     centerX-=(side_of_squar_inside/2);///?
     centerY-=(side_of_squar_inside/2);///?
@@ -114,9 +110,4 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     return output;
 
 
-}
-int main()
-{
-    vector<Point> all_points=maketest(5,3,5,6);
-    return 0;
 }
