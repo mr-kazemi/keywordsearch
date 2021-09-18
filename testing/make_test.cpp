@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+
 using namespace std;
 
 /*include need before run:
@@ -6,11 +6,20 @@ using namespace std;
   "squared_distance.cpp"
 
 */
-/// maketest ("max_x" max in x coordinates ,"max_y" max in y coordinates , "top_ncolor" max number of each color , "n_color" number of color)
+Point point_c1,point_c2; /// start points to make circle (color 1 and 2)
+
+vector<Point> insid_circle; /// points of other colors in the circle
+
+/// maketest ("max_x" max in x coordinates
+///            ,"max_y" max in y coordinates
+///             , "top_ncolor" max number of each color
+///             , "n_color" number of color)
 vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     srand(time(0));
+
     vector<Point> output;/// vector of points that generated
-    /// generating number of colors in "ni_color" vector for each of colors
+
+    ///# generating number of colors in "ni_color" vector for each of colors
     vector<int> ni_color;
     ni_color.push_back(0);
     ///fill the 'ni_color' with random number
@@ -18,7 +27,11 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     for(int i=1;i<=n_color;i++){
         ni_color.push_back((rand()%top_ncolor)+1);
     }
-    /// generating coordination of points for the color 1 with random number,
+    ///##
+
+
+
+    ///# generating coordination of points for the color 1 with random number,
     ///         top number of coordinations is (max_x,max_y)
     Point listpoints_c1[ni_color[1]];
     for(int i=0;i<ni_color[1];i++){
@@ -42,9 +55,14 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
         output.push_back(Point(listpoints_c2[i].x,listpoints_c2[i].y,2));
     }
 
-    /// finding minimum diameter between the points of color 1 and color 2
-    Point point_c1,point_c2; /// start points to make circle (color 1 and 2)
+    ///##
+
+
+
+    ///# finding minimum diameter between the points of color 1 and color 2
+
     double min_diam=(max_x*max_x)+(max_y*max_y)+1;/// save possible maximum value in "min_diam" for diameter and then find minimum
+
     ///trace all points in color 1 and color 2
     for(int i=0;i<ni_color[1];i++){
         for(int j=0;j<ni_color[2];j++){
@@ -57,7 +75,11 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     }
 
     cout<<"min_diam==>"<<sqrt(min_diam)<<endl;
-    /// generating points located in the circle,
+
+    ///##
+
+
+    ///# generating points located in the circle,
     ///   by diameter between the "point_c1" and the "point_c2" for each of colors
     double R=sqrt(squdist(point_c1,point_c2));///Radius of circle between "point_c1" and "point_c2"
     R/=2;
@@ -70,7 +92,7 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     centerX-=(side_of_squar_inside/2);///?
     centerY-=(side_of_squar_inside/2);///?
     double help_x,help_y;///helping variable for generate point in circle
-    vector<Point> insid_circle; /// points of other colors in the circle
+
     for(int i=3;i<=n_color;i++){
         help_x=(double)rand()/RAND_MAX;
         help_x*=side_of_squar_inside;
@@ -80,7 +102,12 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
         insid_circle.push_back(Point(centerX+(help_x),centerY+(help_y),i));
         output.push_back(Point(centerX+(help_x),centerY+(help_y),i));
     }
-    /// generating coordination of the rest points for colors except color 1 and 2
+
+    ///##
+
+
+
+    ///# generating coordination of the rest points for colors except color 1 and 2
     double ax,ay;
     for(int i=3;i<=n_color;i++){
         for(int j=0;j<ni_color[i];j++){
@@ -91,7 +118,10 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
             output.push_back(Point(ax,ay,i));
         }
     }
-    /// graphic part
+
+    ///##
+
+    ///# graphic part
     ofstream file;
     file.open("C:\\Users\\Acer\\Desktop\\Point_Data.txt");
     file<<n_color<<" ";
@@ -105,9 +135,10 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
         file<<" "<<output[i].x<<" "<<output[i].y<<" "<<output[i].color;
     }
     file.close();
-    ///
+    ///##
 
     return output;
 
 
 }
+
