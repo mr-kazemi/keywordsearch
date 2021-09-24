@@ -48,6 +48,18 @@ map<pll,set<int> > make_grid(vector<Point> points,double delta,double epsilon)
 */
 
 
+
+#include <bits/stdc++.h>
+
+#include "diameter_square.cpp"
+/*
+///calculate the square of the diameter of some poins,
+///     input==> 'points' is a list of points of the grid
+
+double diameter_square(vector<pll> points)
+*/
+
+
 using namespace std;
 
 int main()
@@ -56,6 +68,7 @@ int main()
     vector<Point> all_points=maketest(5,3,5,n_color);
     double delta=makedelta(all_points,n_color)*2;
     grid=make_grid(all_points,delta,0.3);
+    double diam = diameter_square({pll(0, 2), pll(3, 1), pll(3, 5), pll(5, 5)});
     cout<<(square_side);
     return 0;
 }
