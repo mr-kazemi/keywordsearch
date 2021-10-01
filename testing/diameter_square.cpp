@@ -2,7 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define pll pair<long long,long long>
+
+// used in "practical_way.cpp"
 
 
 ///calculate the square of the diameter of some poins,
