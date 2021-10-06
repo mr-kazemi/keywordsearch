@@ -12,7 +12,7 @@ using namespace std;
 ///find delta for griding space,
 ///     input==> 'points' is all point in our test,
 ///              'n_color' is number of color we have
-double makedelta(vector<Point> points,int n_color){
+double make_delta(vector<Point> points,int n_color){
 
 
     /// min_dist[i] is the shortest distance of one point from other points with different color,
