@@ -20,14 +20,17 @@ double squdist(Point a,Point b)
 */
 
 
+
 #include "make_test.cpp"
 /*
-/// maketest ("max_x" max in x coordinates
+/// making points with control on delta value for testing main part method
+/// make_test ("max_x" max in x coordinates
 ///            ,"max_y" max in y coordinates
 ///             , "top_ncolor" max number of each color
 ///             , "n_color" number of color)
-vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color)
+vector<Point> make_test(double max_x,double max_y,int top_ncolor,int n_color)
 */
+
 
 
 #include "make_delta.cpp"
@@ -35,8 +38,10 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color)
 ///find delta for griding space,
 ///     input==> 'points' is all point in our test,
 ///              'n_color' is number of color we have
-double makedelta(vector<Point> points,int n_color)
+double make_delta(vector<Point> points,int n_color)
 */
+
+
 
 
 #include "make_grid.cpp"
@@ -48,6 +53,7 @@ double makedelta(vector<Point> points,int n_color)
 
 map<pll,set<int> > make_grid(vector<Point> points,double delta,double epsilon)
 */
+
 
 
 #include "points_in_convex_hull.cpp"
@@ -84,8 +90,8 @@ bool color_spanning(vector<pll> points)
 int main()
 {
     int n_color=6;
-    vector<Point> all_points=maketest(5,3,5,n_color);
-    double delta=makedelta(all_points,n_color)*2;
+    vector<Point> all_points=make_test(5,3,5,n_color);
+    double delta=make_delta(all_points,n_color)*2;
     grid=make_grid(all_points,delta,0.3);
     cout<<(square_side);
 
