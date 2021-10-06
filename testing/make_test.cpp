@@ -9,12 +9,12 @@ using namespace std;
 Point point_c1,point_c2; /// start points to make circle (color 1 and 2)
 
 vector<Point> insid_circle; /// points of other colors in the circle
-
-/// maketest ("max_x" max in x coordinates
+/// making points with control on delta value for testing main part method
+/// make_test ("max_x" max in x coordinates
 ///            ,"max_y" max in y coordinates
 ///             , "top_ncolor" max number of each color
 ///             , "n_color" number of color)
-vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
+vector<Point> make_test(double max_x,double max_y,int top_ncolor,int n_color){
     srand(time(0));
 
     vector<Point> output;/// vector of points that generated
@@ -88,19 +88,20 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
     double centerY=point_c1.y+point_c2.y;///find Y coordinate for center of circle
     centerY/=2;
     cout<<"center of the circle==>"<<centerX<<" , "<<centerY<<endl;
-    double side_of_squar_inside=R*sqrt(2);///? /// reduce Radius for sure points located in circle
-    centerX-=(side_of_squar_inside/2);///?
-    centerY-=(side_of_squar_inside/2);///?
-    double help_x,help_y;///helping variable for generate point in circle
 
+    double side_of_squar_inside=R*sqrt(2);///considering one square in the circle and generate random point in square
+    double startX=centerX-(side_of_squar_inside/2);///finding start point of boundary for generate random point in X coordinate
+    double startY=centerY-(side_of_squar_inside/2);///finding start point of boundary for generate random point in Y coordinate
+    double help_x,help_y;///helping variable for generate point in circle
+    ///starting generate points of each color in square that located in circle except color 1&2
     for(int i=3;i<=n_color;i++){
         help_x=(double)rand()/RAND_MAX;
         help_x*=side_of_squar_inside;
         help_y=(double)rand()/RAND_MAX;
         help_y*=side_of_squar_inside;
         ni_color[i]--;
-        insid_circle.push_back(Point(centerX+(help_x),centerY+(help_y),i));
-        output.push_back(Point(centerX+(help_x),centerY+(help_y),i));
+        insid_circle.push_back(Point(startX+(help_x),startY+(help_y),i));
+        output.push_back(Point(startX+(help_x),startY+(help_y),i));
     }
 
     ///##
@@ -123,7 +124,7 @@ vector<Point> maketest(double max_x,double max_y,int top_ncolor,int n_color){
 
     ///# graphic part
     ofstream file;
-    file.open("C:\\Users\\Acer\\Desktop\\Point_Data.txt");
+    file.open("./Point_Data.txt");
     file<<n_color<<" ";
     file<<point_c1.x<<" "<<point_c1.y<<" "<<point_c1.color<<" ";
     file<<point_c2.x<<" "<<point_c2.y<<" "<<point_c2.color;
